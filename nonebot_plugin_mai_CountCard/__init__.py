@@ -44,6 +44,8 @@ async def _(bot: Bot, event: GroupMessageEvent, args: dict = RegexDict()):
             getItem(location_data, 'alias', f'{location}')['card_count'] += int(card_num)
         elif character == '-':
             getItem(location_data, 'alias', f'{location}')['card_count'] -= int(card_num)
+            if getItem(location_data, 'alias', f'{location}')['card_count'] < 0:
+                getItem(location_data, 'alias', f'{location}')['card_count'] = 0
         card = getItem(location_data, 'alias', f'{location}')['card_count']
         location = getItem(location_data, 'alias', f'{location}')['name']
         time = datetime.datetime.now().strftime("%H:%M:%S")
